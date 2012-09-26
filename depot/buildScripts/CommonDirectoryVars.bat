@@ -4,8 +4,9 @@
 
 set projectDir=D:/Dropbox/Programming/Mario
 
-set buildDir=%projectDir%/build
 set depotDir=%projectDir%/depot
+set buildDir=%projectDir%/build
+set targetDir=%projectDir%/target
 
 set buildScriptsDir=%depotDir%/buildScripts
 set sourceDir=%depotDir%/source

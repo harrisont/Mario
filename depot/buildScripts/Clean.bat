@@ -3,4 +3,7 @@ setlocal
 
 call "%~dp0CommonDirectoryVars.bat"
 
-call rmdir /S /Q "%buildDir%"
+set deleteDirIfExistsCmd=%buildScriptsDir%/DeleteDirIfExists.bat
+
+call "%deleteDirIfExistsCmd%" "%buildDir%"
+call "%deleteDirIfExistsCmd%" "%targetDir%"

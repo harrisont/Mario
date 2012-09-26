@@ -1,11 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(Mario)
+# Set the repository directory.
+# CMAKE_SOURCE_DIR should be at /[root]/depot/source/.
+set(REPOSITORY_DIR ${CMAKE_SOURCE_DIR}/../..)
 
-set(PROJECT_BINARY_DIR D:/Dropbox/Programming/Mario/target)
-
-# Version number
-set(Mario_VERSION_MAJOR 0)
-set(Mario_VERSION_MINOR 1)
+set(CMAKE_INSTALL_PREFIX ${REPOSITORY_DIR}/target)
 
 add_subdirectory(test)
