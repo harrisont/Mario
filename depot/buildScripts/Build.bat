@@ -3,7 +3,7 @@ setlocal
 
 call "%~dp0CommonDirectoryVars.bat"
 
-:: Parameters
+:: CMake Generator
 set cmakeGenerator=Visual Studio 11
 ::set cmakeGenerator=NMake Makefiles
 
