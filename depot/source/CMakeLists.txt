@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
+project(Mario)
+
 SET(CMAKE_BUILD_TYPE Debug)
 
 # Set the repository directory.
@@ -7,5 +9,7 @@ SET(CMAKE_BUILD_TYPE Debug)
 set(REPOSITORY_DIR ${CMAKE_SOURCE_DIR}/../..)
 
 set(CMAKE_INSTALL_PREFIX ${REPOSITORY_DIR}/target)
+
+include("CMakeBuildFlags.txt")
 
 add_subdirectory(test)

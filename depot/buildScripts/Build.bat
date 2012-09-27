@@ -3,6 +3,10 @@ setlocal
 
 call "%~dp0CommonDirectoryVars.bat"
 
+:: Parameters
+set cmakeGenerator=Visual Studio 11
+::set cmakeGenerator=NMake Makefiles
+
 :: Common commands
 set executionTimeCmd=%buildScriptsDir%/ExecutionTime.bat
 set createDirIfMissingCmd=%buildScriptsDir%/CreateDirIfMissing.bat
@@ -16,12 +20,20 @@ echo Running CMake
 echo ---------------------------------------------------------------------------------------------------
 call "%createDirIfMissingCmd%" "%buildDir%"
 call cd "%buildDir%"
-call "%executionTimeCmd%" "%cmakeCmd%" "%sourceDir%"
+call "%executionTimeCmd%" "%cmakeCmd%" -G "%cmakeGenerator%" "%sourceDir%"
 echo CMake time: %executionTime%
 
 echo.
 echo.
 echo Building
 echo ---------------------------------------------------------------------------------------------------
-call "%executionTimeCmd%" nmake /NOLOGO
+if "%cmakeGenerator%" == "NMake Makefiles" (
+	call "%executionTimeCmd%" nmake /nologo
+) else (
+	if "%cmakeGenerator%" == "Visual Studio 11" (
+		call MSBuild.exe /nologo Mario.sln
+	)
+)
 echo Build time: %executionTime%
+
+:End
