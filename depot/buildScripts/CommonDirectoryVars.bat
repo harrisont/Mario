@@ -2,7 +2,9 @@
 
 @echo off
 
-set projectDir=D:/Dropbox/Programming/Mario
+pushd ..\..\
+set projectDir=%CD%
+popd
 
 set depotDir=%projectDir%/depot
 set buildDir=%projectDir%/build
