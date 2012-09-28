@@ -1,0 +1,29 @@
+# Stores the files in the current source directory into:
+#   headers: "${outGlobbedFilesPrefixVar}Headers"
+#   source: "${outGlobbedFilesPrefixVar}Sources"
+#	combined: "${outGlobbedFilesPrefixVar}Files"
+#
+# Also creates a source group with the files.
+# The source group's name is the current source directory.
+#
+# Example usage:
+#   AddGlobbedFiles(foo)
+#   add_executable(MyExecutable ${fooFiles})
+function(AddGlobbedFiles outGlobbedFilesPrefixVar)
+	#message("AddGlobbedFiles: outGlobbedFilesVar=${outGlobbedFilesVar}")
+
+	file(GLOB headerFiles *.h *.hpp)
+	file(GLOB sourceFiles *.cpp *.c)
+	set(allFiles ${headerFiles} ${sourceFiles})
+	set(${outGlobbedFilesPrefixVar}Headers ${headerFiles} PARENT_SCOPE)
+	set(${outGlobbedFilesPrefixVar}Sources ${sourceFiles} PARENT_SCOPE)
+	set(${outGlobbedFilesPrefixVar}Files ${allFiles} PARENT_SCOPE)
+	#message("AddGlobbedFiles: headerFiles=${headerFiles}")
+	#message("AddGlobbedFiles: sourceFiles=${sourceFiles}")
+
+	# Create a source group with the globbed files, with the name of the current
+	# CMake source directory,
+	get_filename_component(cmakeCurrentSourceDirLeaf ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+	#message("AddGlobbedFiles: cmakeCurrentSourceDirLeaf=${cmakeCurrentSourceDirLeaf}")
+	source_group(${cmakeCurrentSourceDirLeaf} FILES ${allFiles})
+endfunction()

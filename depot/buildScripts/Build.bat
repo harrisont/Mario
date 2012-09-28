@@ -20,7 +20,9 @@ echo Running CMake
 echo ---------------------------------------------------------------------------------------------------
 call "%createDirIfMissingCmd%" "%buildDir%"
 call cd "%buildDir%"
-call "%executionTimeCmd%" "%cmakeCmd%" -G "%cmakeGenerator%" "%sourceDir%"
+:: CMake args:
+::  -Wdev enable developer warnings
+call "%executionTimeCmd%" "%cmakeCmd%" -Wdev -G "%cmakeGenerator%" "%sourceDir%"
 echo CMake time: %executionTime%
 
 echo.
@@ -31,7 +33,7 @@ if "%cmakeGenerator%" == "NMake Makefiles" (
 	call "%executionTimeCmd%" nmake /nologo
 ) else (
 	if "%cmakeGenerator%" == "Visual Studio 11" (
-		call MSBuild.exe /nologo Mario.sln
+		call "%executionTimeCmd%" MSBuild.exe /nologo Mario.sln
 	)
 )
 echo Build time: %executionTime%

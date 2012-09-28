@@ -12,4 +12,4 @@ set(CMAKE_INSTALL_PREFIX ${REPOSITORY_DIR}/target)
 
 include("CMakeBuildFlags.txt")
 
-add_subdirectory(test)
+add_subdirectory(game)
