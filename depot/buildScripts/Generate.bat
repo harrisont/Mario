@@ -16,7 +16,11 @@ if "%cmakeGenerator%" == "Visual Studio 11" (
 	)
 ) else (
 	if "%cmakeGenerator%" == "NMake Makefiles" (
-		REM TODO(HTing): Check to see if NMake is installed.
+		REM TODO(HTing): Actually check to see if NMake is installed, instead of just check for Visual Studio.
+		if not "%visualStudio11Installed%" == "true" (
+			echo The CMake generator is set to "%cmakeGenerator%" in %~dp0Config.bat, but NMake is not installed.
+			exit /b 1
+		)
 	) else (
 		echo Invalid CMake generator type "%cmakeGenerator%"
 		exit /b 1
