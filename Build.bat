@@ -1,1 +1,0 @@
-@call depot/BuildScripts/Build.bat
