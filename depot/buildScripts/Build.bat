@@ -1,9 +1,8 @@
-@echo off
-if "%verbose%" == "true" echo on
+@call "%~dp0Config.bat"
 setlocal
 
-call "%~dp0CommonDirectoryVars.bat"
 call "%~dp0Config.bat"
+call "%~dp0CommonDirectoryVars.bat"
 
 :: Common commands
 set executionTimeCmd=%buildScriptsDir%/ExecutionTime.bat
@@ -11,12 +10,13 @@ set createDirIfMissingCmd=%buildScriptsDir%/CreateDirIfMissing.bat
 set cmakeCmd=%externalDir%/cmake-2.8.8/bin/cmake.exe
 
 :: Is Visual Studio installed?
-for /f "tokens=*" %%i in ('reg query HKLM\Software\Microsoft\DevDiv\vs\Servicing\11.0') do set visualStudio11Installed=true
+reg query HKLM\Software\Microsoft\DevDiv\vs\Servicing\11.0 >nul 2>&1
+if "%errorlevel%" == "0" set visualStudio11Installed=true
 
 :: Validate the CMake generator
 if "%cmakeGenerator%" == "Visual Studio 11" (
 	if not "%visualStudio11Installed%" == "true" (
-		echo cmakeGenerator set to "%cmakeGenerator%", but Visual Studio 11 is not installed.
+		echo The CMake generator is set to "%cmakeGenerator%" in %~dp0Config.bat, but Visual Studio 11 is not installed.
 		goto End
 	)
 ) else (

@@ -1,7 +1,6 @@
 :: Sets common directory variables.
 
-@echo off
-if "%verbose%" == "true" echo on
+@call "%~dp0Config.bat"
 
 :: Don't use setlocal because we want to export these variables
 

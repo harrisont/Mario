@@ -3,9 +3,8 @@
 :: The first argument is the command to run.
 :: The rest of the arguments are passed in to the command.
 
-@echo off
-if "%verbose%" == "true" echo on
-@setlocal
+@call "%~dp0Config.bat"
+setlocal
 
 set start=%time%
 

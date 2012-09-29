@@ -1,5 +1,4 @@
-@echo off
-if "%verbose%" == "true" echo on
+@call "%~dp0Config.bat"
 setlocal
 
 if exist %* (

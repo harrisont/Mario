@@ -1,0 +1,1 @@
+@call depot/BuildScripts/Clean.bat
