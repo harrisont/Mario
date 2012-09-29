@@ -1,16 +1,32 @@
 @echo off
+if "%verbose%" == "true" echo on
 setlocal
 
 call "%~dp0CommonDirectoryVars.bat"
-
-:: CMake Generator
-set cmakeGenerator=Visual Studio 11
-::set cmakeGenerator=NMake Makefiles
+call "%~dp0Config.bat"
 
 :: Common commands
 set executionTimeCmd=%buildScriptsDir%/ExecutionTime.bat
 set createDirIfMissingCmd=%buildScriptsDir%/CreateDirIfMissing.bat
 set cmakeCmd=%externalDir%/cmake-2.8.8/bin/cmake.exe
+
+:: Is Visual Studio installed?
+for /f "tokens=*" %%i in ('reg query HKLM\Software\Microsoft\DevDiv\vs\Servicing\11.0') do set visualStudio11Installed=true
+
+:: Validate the CMake generator
+if "%cmakeGenerator%" == "Visual Studio 11" (
+	if not "%visualStudio11Installed%" == "true" (
+		echo cmakeGenerator set to "%cmakeGenerator%", but Visual Studio 11 is not installed.
+		goto End
+	)
+) else (
+	if "%cmakeGenerator%" == "NMake Makefiles" (
+		REM TODO(HTing): Check to see if NMake is installed.
+	) else (
+		echo Invalid CMake generator type "%cmakeGenerator%"
+		goto End
+	)
+)
 
 :: Load the VC compiler variables.
 set vcBin=C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/bin
@@ -29,11 +45,14 @@ echo.
 echo.
 echo Building
 echo ---------------------------------------------------------------------------------------------------
-if "%cmakeGenerator%" == "NMake Makefiles" (
-	call "%executionTimeCmd%" nmake /nologo
+if "%cmakeGenerator%" == "Visual Studio 11" (
+	call "%executionTimeCmd%" MSBuild.exe /nologo Mario.sln
 ) else (
-	if "%cmakeGenerator%" == "Visual Studio 11" (
-		call "%executionTimeCmd%" MSBuild.exe /nologo Mario.sln
+	if "%cmakeGenerator%" == "NMake Makefiles" (
+		call "%executionTimeCmd%" nmake /nologo
+	) else (
+		echo Invalid CMake generator type "%cmakeGenerator%"
+		goto End
 	)
 )
 echo Build time: %executionTime%

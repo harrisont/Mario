@@ -1,8 +1,11 @@
 :: Sets common directory variables.
 
 @echo off
+if "%verbose%" == "true" echo on
 
-pushd ..\..\
+:: Don't use setlocal because we want to export these variables
+
+pushd "%~dp0..\..\"
 set projectDir=%CD%
 popd
 

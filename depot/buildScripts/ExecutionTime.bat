@@ -4,7 +4,8 @@
 :: The rest of the arguments are passed in to the command.
 
 @echo off
-@setlocal 
+if "%verbose%" == "true" echo on
+@setlocal
 
 set start=%time%
 

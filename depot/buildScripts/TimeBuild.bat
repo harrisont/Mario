@@ -1,13 +1,11 @@
 @echo off
+if "%verbose%" == "true" echo on
 setlocal
 
 call "%~dp0CommonDirectoryVars.bat"
 
 :: Common commands
 set executionTimeCmd=%buildScriptsDir%/ExecutionTime.bat
-
-::echo Generating Makefiles and Building
-::echo ---------------------------------------------------------------------------------------------------
 
 call "%executionTimeCmd%" "%buildScriptsDir%/Build.bat"
 

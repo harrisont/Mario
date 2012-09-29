@@ -1,4 +1,5 @@
 @echo off
+if "%verbose%" == "true" echo on
 setlocal
 
 call "%~dp0CommonDirectoryVars.bat"
