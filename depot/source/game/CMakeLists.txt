@@ -4,6 +4,6 @@ project(Game)
 
 AddGlobbedFiles(game model)
 
-add_executable(Game ${gameFiles} ${gametestFiles})
+add_executable(Game ${gameFiles})
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME})
