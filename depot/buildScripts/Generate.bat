@@ -33,5 +33,5 @@ call "%createDirIfMissingCmd%" "%buildDir%"
 cd "%buildDir%"
 :: CMake args:
 ::  -Wdev enable developer warnings
-call "%executionTimeCmd%" "%cmakeCmd%" -Wdev -G "%cmakeGenerator%" "%sourceDir%"
+call "%executionTimeCmd%" "%cmakeCmd%" -Wdev -G "%cmakeGenerator%" "%depotDir%"
 echo CMake time: %executionTime%
