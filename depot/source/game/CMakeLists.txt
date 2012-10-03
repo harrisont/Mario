@@ -8,10 +8,8 @@ include_directories(${sfmlIncludeDir})
 
 add_executable(Game ${gameFiles})
 
-target_link_libraries(Game
-	debug ${sfmlLibDir}/sfml-system-d.lib
-	optimized ${sfmlLibDir}/sfml-system.lib
-	debug ${sfmlLibDir}/sfml-window-d.lib
-	optimized ${sfmlLibDir}/sfml-window.lib)
+targetLinkSfmlLibs(Game
+	system
+	window)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME})
