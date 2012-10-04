@@ -4,17 +4,14 @@ project(Mario)
 
 SET(CMAKE_BUILD_TYPE Debug)
 
-# Set the repository directory.
 # CMAKE_SOURCE_DIR should be at /[root]/depot/source/.
-set(repositoryDir ${CMAKE_SOURCE_DIR}/..)
+get_filename_component(repositoryDir ${CMAKE_SOURCE_DIR}/.. ABSOLUTE)
 
-# External
-set(externalDir ${CMAKE_SOURCE_DIR}/external)
-set(sfmlDir ${externalDir}/SFML-2.0-rc)
-set(sfmlIncludeDir ${sfmlDir}/include)
-set(sfmlLibDir ${sfmlDir}/lib)
+set(depotDir ${repositoryDir}/depot)
+set(targetDir ${repositoryDir}/target)
+set(externalDir ${depotDir}/external)
 
-set(CMAKE_INSTALL_PREFIX ${repositoryDir}/target)
+set(CMAKE_INSTALL_PREFIX ${targetDir})
 
 include("CMakeBuildFlags.txt")
 

@@ -1,15 +1,15 @@
-include("${CMAKE_SOURCE_DIR}/CMakeAddGlobbedFiles.txt")
+include("${depotDir}/CMakeAddGlobbedFiles.txt")
+include("${externalDir}/CMakeSfml.txt")
 
 project(Game)
 
-AddGlobbedFiles(game model)
+set(EXECUTABLE_OUTPUT_PATH ${targetDir}/${PROJECT_NAME})
 
-include_directories(${sfmlIncludeDir})
+AddGlobbedFiles(game model)
 
 add_executable(Game ${gameFiles})
 
 targetLinkSfmlLibs(Game
 	system
-	window)
-
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME})
+	window
+	graphics)
