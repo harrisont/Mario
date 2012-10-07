@@ -7,9 +7,10 @@ set(EXECUTABLE_OUTPUT_PATH ${targetDir}/${PROJECT_NAME})
 
 AddGlobbedFiles(game model)
 
-add_executable(Game ${gameFiles})
+set(executableName Game)
+add_executable(${executableName} ${gameFiles})
 
-targetLinkSfmlLibs(Game
+targetLinkSfmlLibs(${executableName}
 	system
 	window
 	graphics)
