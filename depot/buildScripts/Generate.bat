@@ -7,6 +7,8 @@ call "%~dp0CommonCommands.bat"
 :: Is Visual Studio installed?
 reg query HKLM\Software\Microsoft\DevDiv\vs\Servicing\11.0 >nul 2>&1
 if "%errorlevel%" == "0" set visualStudio11Installed=true
+reg query HKLM\Software\Microsoft\DevDiv\vc\Servicing\11.0 >nul 2>&1
+if "%errorlevel%" == "0" set visualStudio11Installed=true
 
 :: Validate the CMake generator
 if "%cmakeGenerator%" == "Visual Studio 11" (

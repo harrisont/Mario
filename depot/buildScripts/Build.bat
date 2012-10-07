@@ -10,8 +10,9 @@ echo ---------------------------------------------------------------------------
 cd "%buildDir%"
 
 :: Load the VC compiler variables.
-set vcBin=C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/bin
-call "%vcBin%/vcvars32.bat"
+set visualStudioDir=%VS110COMNTOOLS%/../..
+set visualStudioBin=%visualStudioDir%/VC/bin
+call "%visualStudioBin%/vcvars32.bat"
 
 :: Call the build program, depending on the generator.
 if "%cmakeGenerator%" == "Visual Studio 11" (
