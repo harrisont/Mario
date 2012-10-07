@@ -13,7 +13,7 @@ set(externalDir ${depotDir}/external)
 
 set(CMAKE_INSTALL_PREFIX ${targetDir})
 
-include("CMakeBuildFlags.txt")
+include("CMakeBuildFlags.cmake")
 
 add_subdirectory(external)
 add_subdirectory(source)
