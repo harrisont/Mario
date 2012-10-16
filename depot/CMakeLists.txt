@@ -7,13 +7,12 @@ SET(CMAKE_BUILD_TYPE Debug)
 # CMAKE_SOURCE_DIR should be at /[root]/depot/source/.
 get_filename_component(repositoryDir ${CMAKE_SOURCE_DIR}/.. ABSOLUTE)
 
-set(depotDir ${repositoryDir}/depot)
+set(buildDir ${repositoryDir}/build)
 set(targetDir ${repositoryDir}/target)
+set(depotDir ${repositoryDir}/depot)
 set(externalDir ${depotDir}/external)
 
 set(CMAKE_INSTALL_PREFIX ${targetDir})
-
-include("CMakeBuildFlags.cmake")
 
 add_subdirectory(external)
 add_subdirectory(source)
