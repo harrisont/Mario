@@ -31,7 +31,6 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules/")
 
 # set the output directory for SFML libraries
-message("PROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}")
 set(LIBRARY_OUTPUT_PATH "${PROJECT_BINARY_DIR}/lib")
 
 # add the modules subdirectories

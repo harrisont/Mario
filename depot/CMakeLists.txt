@@ -14,5 +14,8 @@ set(externalDir ${depotDir}/external)
 
 set(CMAKE_INSTALL_PREFIX ${targetDir})
 
+# Use solution folders.
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 add_subdirectory(external)
 add_subdirectory(source)

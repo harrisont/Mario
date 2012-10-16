@@ -1,9 +1,25 @@
+# Folder variables
 set(sfmlDir ${externalDir}/SFML-2.0-rc)
 set(sfmlIncludeDir ${sfmlDir}/include)
 set(sfmlBuildDir ${buildDir}/external/SFML-2.0-rc)
 set(sfmlLibDir ${sfmlBuildDir}/lib)
 set(sfmlBinDir ${sfmlBuildDir}/lib)
 
+# SFML projects
+set(sfmlProjects
+	audio
+	graphics
+	main
+	network
+	system
+	window)
+
+# SFML solution folder
+foreach(sfmlProject ${sfmlProjects})
+	set_target_properties(sfml-${sfmlProject} PROPERTIES FOLDER "SFML")
+endforeach()
+
+# Include directories
 include_directories(${sfmlIncludeDir})
 
 # Link SFML libs against target and copy the dll.
