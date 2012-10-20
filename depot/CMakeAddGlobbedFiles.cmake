@@ -1,3 +1,5 @@
+include("${depotDir}/CMakeConvertSlashes.cmake")
+
 # Stores the files in the given directory into:
 #   headers: "${outGlobbedFilesPrefixVar}Headers"
 #   source: "${outGlobbedFilesPrefixVar}Sources"
@@ -17,9 +19,15 @@ function(AddGlobbedFiles outGlobbedFilesPrefixVar directory)
 	file(GLOB headerFiles ${directory}/*.h ${directory}/*.hpp)
 	file(GLOB sourceFiles ${directory}/*.cpp ${directory}/*.c)
 	set(allFiles ${headerFiles} ${sourceFiles})
-	set(${outGlobbedFilesPrefixVar}Headers ${headerFiles} PARENT_SCOPE)
-	set(${outGlobbedFilesPrefixVar}Sources ${sourceFiles} PARENT_SCOPE)
-	set(${outGlobbedFilesPrefixVar}Files ${allFiles} PARENT_SCOPE)
+
+	set(headersVar ${outGlobbedFilesPrefixVar}Headers)
+	set(sourcesVar ${outGlobbedFilesPrefixVar}Sources)
+	set(filesVar ${outGlobbedFilesPrefixVar}Files)
+
+	set(${headersVar} ${${headersVar}} ${headerFiles} PARENT_SCOPE)
+	set(${sourcesVar} ${${sourcesVar}} ${sourceFiles} PARENT_SCOPE)
+	set(${filesVar} ${${filesVar}} ${allFiles} PARENT_SCOPE)
+
 	#message("AddGlobbedFiles: headerFiles=${headerFiles}")
 	#message("AddGlobbedFiles: sourceFiles=${sourceFiles}")
 
@@ -27,8 +35,7 @@ function(AddGlobbedFiles outGlobbedFilesPrefixVar directory)
 	# the directory.
 	get_filename_component(directoryAbsolute ${directory} ABSOLUTE)
 	if(NOT ${directoryAbsolute} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-		get_filename_component(directoryName ${directoryAbsolute} NAME)
-		set(sourceGroupName ${directoryName})
+		ConvertToBackSlashes(sourceGroupName ${directory})
 		#message("AddGlobbedFiles: sourceGroupName=${sourceGroupName}")
 		source_group(${sourceGroupName} FILES ${allFiles})
 	endif()

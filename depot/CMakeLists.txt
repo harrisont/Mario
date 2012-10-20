@@ -11,8 +11,11 @@ set(buildDir ${repositoryDir}/build)
 set(targetDir ${repositoryDir}/target)
 set(depotDir ${repositoryDir}/depot)
 set(externalDir ${depotDir}/external)
+set(sourceDir ${depotDir}/source)
 
 set(CMAKE_INSTALL_PREFIX ${targetDir})
+
+include_directories(${sourceDir})
 
 # Use solution folders.
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
