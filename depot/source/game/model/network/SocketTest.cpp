@@ -52,7 +52,7 @@ public:
 		//class MessageRecievedListener : public IMessageRecievedListener
 		//{
 		//public:
-		//	void MessageRecieved(Network::Id from, std::string message)
+		//	void MessageRecieved(Network::Id from, std::string message) override
 		//	{
 		//	}
 		//} messageRecievedListener;

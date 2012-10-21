@@ -19,7 +19,7 @@ public:
 	{
 	}
 
-	Network::Id GetId()
+	const Network::Id& GetId() const
 	{
 		return m_id;
 	}
