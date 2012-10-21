@@ -47,7 +47,7 @@ public:
 		Network::Node node1("Node-1");
 		Network::Node node2("Node-2");
 
-		//Network::Connection connection = node1.ConnectNode(node2);
+		node1.ConnectNode(node2.GetId());
 
 		//class MessageRecievedListener : public IMessageRecievedListener
 		//{
