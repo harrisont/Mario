@@ -15,34 +15,39 @@ namespace Network
 class Node
 {
 public:
-	Node(Network::Id::Name name)
-		: m_id(name)
+#pragma region Constructors and Destructors
+	Node(Id id)
+		: m_id(id)
 	{
 	}
+#pragma endregion
 
-	const Network::Id& GetId() const
-	{
-		return m_id;
-	}
+#pragma region Getters
+	const Id& GetId() const	{ return m_id; }
+#pragma endregion
 
-	void ConnectNode(Network::Id idToConnect)
+	void ConnectNode(Id idToConnect)
 	{
 		m_nodeConnections.emplace_back(idToConnect);
 	}
 
+	void SendMessage(const Id& destination, Message message);
+
+#pragma region Notifications
 	class IMessageRecievedListener
 	{
 	public:
-		virtual void MessageRecieved(const Network::Id& from, const Network::Message& message) = 0;
+		virtual void MessageRecieved(const Id& from, const Message& message) = 0;
 	};
 
 	void AddMessageReceivedListener(std::weak_ptr<IMessageRecievedListener> messageRecievedListener)
 	{
 		m_messageReceivedListeners.push_back(std::move(messageRecievedListener));
 	}
+#pragma endregion
 
 private:
-	Network::Id m_id;
+	Id m_id;
 	std::vector<NodeConnection> m_nodeConnections;
 	std::vector<std::weak_ptr<IMessageRecievedListener>> m_messageReceivedListeners;
 };

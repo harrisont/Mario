@@ -11,8 +11,9 @@ namespace Network
 class Message
 {
 public:
-	typedef std::wstring Content;
+	typedef std::string Content;
 
+#pragma region Constructors and Destructors
 	Message(const Content& content)
 		: m_content(content)
 	{
@@ -22,11 +23,9 @@ public:
 		: m_content(std::move(content))
 	{
 	}
+#pragma endregion
 
-	const Content& GetContent() const
-	{
-		return m_content;
-	}
+	const Content& GetContent() const { return m_content; }
 
 private:
 	const Content m_content;

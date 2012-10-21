@@ -10,13 +10,13 @@ namespace Network
 class NodeConnection
 {
 public:
-	NodeConnection(Network::Id destinationId)
-		: m_destinationId(destinationId)
+	NodeConnection(Id destination)
+		: m_destination(destination)
 	{
 	}
 
 private:
-	Network::Id m_destinationId;
+	Id m_destination;
 };
 
 } // namespace Network
