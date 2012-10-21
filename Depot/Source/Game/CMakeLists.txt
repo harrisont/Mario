@@ -5,8 +5,8 @@ project(Game)
 
 set(EXECUTABLE_OUTPUT_PATH ${targetDir}/${PROJECT_NAME})
 
-AddGlobbedFiles(game model)
-AddGlobbedFiles(game model/network)
+AddGlobbedFiles(game Model)
+AddGlobbedFiles(game Model/Network)
 
 set(executableName Game)
 add_executable(${executableName} ${gameFiles})

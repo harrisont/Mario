@@ -1,8 +1,8 @@
 #pragma once
 
-#include <game/model/network/Id.h>
-#include <game/model/network/Message.h>
-#include <game/model/network/NodeConnection.h>
+#include <Game/Model/Network/Id.h>
+#include <Game/Model/Network/Message.h>
+#include <Game/Model/Network/NodeConnection.h>
 
 #include <memory>
 #include <vector>

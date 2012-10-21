@@ -1,7 +1,7 @@
 # Folder variables
 set(sfmlDir ${externalDir}/SFML-2.0-rc)
 set(sfmlIncludeDir ${sfmlDir}/include)
-set(sfmlBuildDir ${buildDir}/external/SFML-2.0-rc)
+set(sfmlBuildDir ${buildDir}/External/SFML-2.0-rc)
 set(sfmlLibDir ${sfmlBuildDir}/lib)
 set(sfmlBinDir ${sfmlBuildDir}/lib)
 

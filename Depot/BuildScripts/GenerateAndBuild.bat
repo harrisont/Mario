@@ -10,6 +10,6 @@ echo.
 echo.
 
 :: Build
-call depot/BuildScripts/Build.bat
+call Depot/BuildScripts/Build.bat
 
 :End

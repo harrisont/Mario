@@ -1,4 +1,4 @@
-#include <game/model/network/Node.h>
+#include <Game/Model/Network/Node.h>
 
 namespace Ting
 {

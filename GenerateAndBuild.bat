@@ -1,1 +1,1 @@
-@call depot/BuildScripts/GenerateAndBuild.bat
+@call Depot/BuildScripts/GenerateAndBuild.bat

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <game/model/network/Id.h>
+#include <Game/Model/Network/Id.h>
 
 namespace Ting
 {

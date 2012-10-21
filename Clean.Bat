@@ -1,1 +1,1 @@
-@call depot/BuildScripts/Clean.bat
+@call Depot/BuildScripts/Clean.bat

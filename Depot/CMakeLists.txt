@@ -7,11 +7,11 @@ SET(CMAKE_BUILD_TYPE Debug)
 # CMAKE_SOURCE_DIR should be at /[root]/depot/source/.
 get_filename_component(repositoryDir ${CMAKE_SOURCE_DIR}/.. ABSOLUTE)
 
-set(buildDir ${repositoryDir}/build)
-set(targetDir ${repositoryDir}/target)
-set(depotDir ${repositoryDir}/depot)
-set(externalDir ${depotDir}/external)
-set(sourceDir ${depotDir}/source)
+set(buildDir ${repositoryDir}/Build)
+set(targetDir ${repositoryDir}/Target)
+set(depotDir ${repositoryDir}/Depot)
+set(externalDir ${depotDir}/External)
+set(sourceDir ${depotDir}/Source)
 
 set(CMAKE_INSTALL_PREFIX ${targetDir})
 
@@ -20,5 +20,5 @@ include_directories(${sourceDir})
 # Use solution folders.
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_subdirectory(external)
-add_subdirectory(source)
+add_subdirectory(External)
+add_subdirectory(Source)
