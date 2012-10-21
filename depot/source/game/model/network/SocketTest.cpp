@@ -49,17 +49,21 @@ public:
 
 		node1.ConnectNode(node2.GetId());
 
-		//class MessageRecievedListener : public IMessageRecievedListener
-		//{
-		//public:
-		//	void MessageRecieved(Network::Id from, std::string message) override
-		//	{
-		//	}
-		//} messageRecievedListener;
+		class MessageRecievedListener : public Network::Node::IMessageRecievedListener
+		{
+		public:
+			void MessageRecieved(const Network::Id& /*from*/, const Network::Message& /*message*/) override
+			{
+				// TODO
+			}
+		};
 
-//		node1.AddMessageReceivedListener(messageRecievedListener);
-//		node2.AddMessageReceivedListener(messageRecievedListener);
-//
+		auto messageRecievedListener1 = std::make_shared<MessageRecievedListener>();
+		auto messageRecievedListener2 = std::make_shared<MessageRecievedListener>();
+
+		node1.AddMessageReceivedListener(messageRecievedListener1);
+		node2.AddMessageReceivedListener(messageRecievedListener2);
+
 //		node1.SendMessage(node2, "node1 -> node2");
 //#error Verify that the message was received.
 //#error Measure the time the message took to arrive.
