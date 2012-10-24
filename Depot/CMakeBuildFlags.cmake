@@ -23,7 +23,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "/D_DEBUG /MDd /ZI /Ob0 /Od /RTC1")
 # Linker Flags
 # -----------------------------------------------------------------------------
 # /WX tret warnings as errors
-set(CMAKE_EXE_LINKER_FLAGS "/STACK:10000000 /machine:X86 /WX")
+set(CMAKE_EXE_LINKER_FLAGS "/WX")
 
 # Executable Debug Linker Flags
 # -----------------------------------------------------------------------------
