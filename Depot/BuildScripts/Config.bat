@@ -1,7 +1,6 @@
 @echo off
 :: Set the verbosity {true, false}
-set verbose=false
-if "%verbose%" == "true" echo on
+if "%verboseBuildScript%" == "true" echo on
 
 :: Don't use setlocal because we want to export these variables
 
