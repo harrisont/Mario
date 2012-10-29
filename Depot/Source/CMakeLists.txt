@@ -1,3 +1,3 @@
-include("${depotDir}/CMakeBuildFlags.cmake")
+include("${cmakeScriptsDir}/BuildFlags.cmake")
 
 add_subdirectory(Game)

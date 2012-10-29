@@ -1,4 +1,4 @@
-include("${depotDir}/CMakeConvertSlashes.cmake")
+include("${cmakeScriptsDir}/ConvertSlashes.cmake")
 
 # Stores the files in the given directory into:
 #   headers: "${outGlobbedFilesPrefixVar}Headers"

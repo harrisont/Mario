@@ -1,5 +1,5 @@
-include("${depotDir}/CMakeAddGlobbedFiles.cmake")
-include("${externalDir}/CMakeSfml.cmake")
+include("${cmakeScriptsDir}/AddGlobbedFiles.cmake")
+include("${externalDir}/Sfml.cmake")
 
 project(Game)
 

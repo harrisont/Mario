@@ -11,6 +11,7 @@ set(buildDir ${repositoryDir}/Build)
 set(targetDir ${repositoryDir}/Target)
 set(depotDir ${repositoryDir}/Depot)
 set(externalDir ${depotDir}/External)
+set(cmakeScriptsDir ${depotDir}/CMakeScripts)
 set(sourceDir ${depotDir}/Source)
 
 set(CMAKE_INSTALL_PREFIX ${targetDir})
