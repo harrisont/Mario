@@ -1,3 +1,3 @@
 @call Clean.bat
-@cp Depot/Git/Hooks/* .git/hooks/
+@copy /Y Depot\Git\Hooks\* .git\hooks\
 @call GenerateAndBuild.bat
