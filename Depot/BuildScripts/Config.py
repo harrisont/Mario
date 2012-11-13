@@ -1,2 +1,7 @@
 SOLUTION_NAME = "Mario"
-CMAKE_GENERATOR = "Visual Studio 11"
+
+class CmakeGenerators:
+	VISUAL_STUDIO_11 = "Visual Studio 11"
+	NMAKE_MAKEFILES = "NMake Makefiles"
+
+CMAKE_GENERATOR = CmakeGenerators.VISUAL_STUDIO_11
