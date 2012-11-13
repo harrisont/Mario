@@ -52,8 +52,14 @@ def generate():
 def time_generate():
 	return timeit.timeit("generate()", setup="from __main__ import generate", number=1)
 
+def get_duration_str(duration):
+	if duration < 0.01:
+		return "{:.2n} milliseconds".format(duration*1000)
+	else:
+		return "{:.2n} seconds".format(duration)
+
 if __name__ == "__main__":
 	print("Running CMake")
 	print("-" * 100)
 	generationTime = time_generate()
-	print("CMake duration: {:.2n}".format(generationTime))
+	print("CMake duration: {}".format(get_duration_str(generationTime)))
