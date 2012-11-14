@@ -2,8 +2,6 @@ import CMake
 import CommonDirectories as Directories
 import FunctionTiming
 
-import os
-
 def build():
 	""" Returns 0 on success, non-0 on failure.
 	"""
@@ -12,12 +10,6 @@ def build():
 def build_helper(build_dir):
 	""" Returns 0 on success, non-0 on failure.
 	"""
-	try:
-		os.chdir(build_dir)
-	except FileNotFoundError:
-		print("Could not find the build directory ('{}')".format(build_dir))
-		return 1
-
 	# TODO(HTing): Add support for:
 	#   - building differnt configurations ("--config <cfg>")
 	#   - cleaning first ("--clean-first")
