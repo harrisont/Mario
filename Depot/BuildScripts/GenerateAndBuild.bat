@@ -10,6 +10,6 @@ echo.
 echo.
 
 :: Build
-call Depot/BuildScripts/Build.bat
+call "Depot/External/Python/Python-3.3.0/python.exe" Depot/BuildScripts/Build.py
 
 :End
