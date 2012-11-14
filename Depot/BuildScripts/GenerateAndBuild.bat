@@ -3,7 +3,7 @@ setlocal
 
 :: Generate
 set errorlevel=
-call depot/BuildScripts/Generate.bat
+call "Depot/External/Python/Python-3.3.0/python.exe" Depot/BuildScripts/Generate.py
 if %errorlevel% NEQ 0 exit /b %errorlevel%
 
 echo.
