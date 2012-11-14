@@ -1,1 +1,1 @@
-@call Depot/BuildScripts/Generate.bat
+@Depot/External/Python/Python-3.3.0/python.exe Depot/BuildScripts/Generate.py

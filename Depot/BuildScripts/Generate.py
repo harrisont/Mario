@@ -1,9 +1,11 @@
 import CommonCommands as Commands
 import CommonDirectories as Directories
 import Config
+import FunctionTiming
 
+import os
+import subprocess
 import sys
-import timeit
 import winreg
 
 def is_visual_studio_11_installed():
@@ -36,30 +38,25 @@ def validate_cmake_generator(generator):
 	else:
 		sys.exit("Invalid CMake generator '{}'".format(generator))
 
-def run_cmake(generator):
+def run_cmake(generator, build_dir, depot_dir):
 	validate_cmake_generator(generator)
 
-	# call "%createDirIfMissingCmd%" "%buildDir%"
-	# cd "%buildDir%"
-	#
-	# :: CMake args:
-	# ::  -Wdev enable developer warnings
-	# call "%cmakeCmd%" -Wdev -G "%cmakeGenerator%" "%depotDir%"
+	# Run from the build directory.
+	os.makedirs(build_dir, exist_ok=True)
+	os.chdir(build_dir)
+
+	# CMake args:
+	#  -Wdev enable developer warnings
+	#  -G specifies the generator
+	Commands.CMAKE_CMD
+	return subprocess.call([Commands.CMAKE_CMD, "-Wdev", "-G", generator, depot_dir])
 
 def generate():
-	run_cmake(Config.CMAKE_GENERATOR)
-
-def time_generate():
-	return timeit.timeit("generate()", setup="from __main__ import generate", number=1)
-
-def get_duration_str(duration):
-	if duration < 0.01:
-		return "{:.2n} milliseconds".format(duration*1000)
-	else:
-		return "{:.2n} seconds".format(duration)
+	return run_cmake(Config.CMAKE_GENERATOR, Directories.BUILD_DIR, Directories.DEPOT_DIR)
 
 if __name__ == "__main__":
 	print("Running CMake")
 	print("-" * 100)
-	generationTime = time_generate()
-	print("CMake duration: {}".format(get_duration_str(generationTime)))
+	generation_return_value, generation_time = FunctionTiming.time_function(generate)
+	print("CMake duration: {}".format(FunctionTiming.get_duration_str(generation_time)))
+	exit(generation_return_value)
