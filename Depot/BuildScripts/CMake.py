@@ -1,3 +1,6 @@
+import CommonCommands as Commands
+
+import subprocess
 import winreg
 
 class Generators:
@@ -37,3 +40,9 @@ def get_cmake_generator_validity(generator):
 			return GeneratorValidity.MISSING
 	else:
 		return GeneratorValidity.INVALID
+
+def run_cmake(args):
+	""" args: a list of arguments to pass to CMake.
+	e.g. run_cmake(["-G", "Visual Studio 11"])
+	"""
+	return subprocess.call([Commands.CMAKE_CMD] + args)

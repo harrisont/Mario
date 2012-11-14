@@ -1,11 +1,9 @@
 import CMake
-import CommonCommands as Commands
 import CommonDirectories as Directories
 import Config
 import FunctionTiming
 
 import os
-import subprocess
 import sys
 
 def fail_due_to_missing_generator(generator):
@@ -29,8 +27,7 @@ def run_cmake(generator, build_dir, depot_dir):
 	# CMake args:
 	#  -Wdev enable developer warnings
 	#  -G specifies the generator
-	Commands.CMAKE_CMD
-	return subprocess.call([Commands.CMAKE_CMD, "-Wdev", "-G", generator, depot_dir])
+	return CMake.run_cmake(["-Wdev", "-G", generator, depot_dir])
 
 def generate():
 	return run_cmake(Config.CMAKE_GENERATOR, Directories.BUILD_DIR, Directories.DEPOT_DIR)
