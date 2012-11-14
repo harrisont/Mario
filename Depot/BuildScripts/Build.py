@@ -1,3 +1,4 @@
+import CMake
 import CommonDirectories as Directories
 import FunctionTiming
 
@@ -17,13 +18,14 @@ def build_helper(build_dir):
 		print("Could not find the build directory ('{}')".format(build_dir))
 		return 1
 
-	# CMake --build
-
-	return 0
+	# TODO(HTing): Add support for:
+	#   - building differnt configurations ("--config <cfg>")
+	#   - cleaning first ("--clean-first")
+	return CMake.run_cmake(["--build", build_dir])
 
 if __name__ == "__main__":
 	print("Building")
 	print("-" * 100)
 	build_return_value, build_time = FunctionTiming.time_function(build)
 	print("Build duration: {}".format(FunctionTiming.get_duration_str(build_time)))
-	exit(build_return_value)
+	exit(build_return_value
