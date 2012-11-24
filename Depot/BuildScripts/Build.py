@@ -18,6 +18,7 @@ def build_helper(build_dir):
 if __name__ == "__main__":
 	print("Building")
 	print("-" * 100)
-	build_return_value, build_time = FunctionTiming.time_function(build)
-	print("Build duration: {}".format(FunctionTiming.get_duration_str(build_time)))
-	exit(build_return_value)
+	result, duration = FunctionTiming.time_function(build)
+	duration_str = FunctionTiming.get_duration_str(duration)
+	print("Build duration: {}".format(duration_str))
+	exit(result)

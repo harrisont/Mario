@@ -1,7 +1,7 @@
 import time
 
 def time_function(function, *args, **kwargs):
-	""" Returns (<function-call-result>, <function-call-duration>)
+	""" Returns (<function-call-result>, <function-call-duration-seconds>)
 	"""
 	start = time.time()
 	result = function(*args,**kwargs)

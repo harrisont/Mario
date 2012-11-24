@@ -30,11 +30,14 @@ def run_cmake(generator, build_dir, depot_dir):
 	return CMake.run_cmake(["-Wdev", "-G", generator, depot_dir])
 
 def generate():
+	""" Returns 0 on success, non-0 on failure.
+	"""
 	return run_cmake(Config.CMAKE_GENERATOR, Directories.BUILD_DIR, Directories.DEPOT_DIR)
 
 if __name__ == "__main__":
 	print("Running CMake")
 	print("-" * 100)
-	generation_return_value, generation_time = FunctionTiming.time_function(generate)
-	print("CMake duration: {}".format(FunctionTiming.get_duration_str(generation_time)))
-	exit(generation_return_value)
+	result, duration = FunctionTiming.time_function(generate)
+	duration_str = FunctionTiming.get_duration_str(duration)
+	print("CMake duration: {}".format(duration_str))
+	exit(result)
