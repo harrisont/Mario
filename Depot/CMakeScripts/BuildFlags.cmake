@@ -1,4 +1,4 @@
-# C++ Compile Flags
+# C++ Compile Flags (All Configurations)
 # -----------------------------------------------------------------------------
 # /Wall enable all warnings
 # /WX treat warnings as errors
@@ -7,6 +7,12 @@
 # /analyze enable static code analysis
 set(CMAKE_CXX_FLAGS "/DWIN32 /D_WINDOWS /W4 /WX /EHsc /GR /analyze")
 
+# C++ Debug Preprocessor Defines Flags
+# -----------------------------------------------------------------------------
+# _DEBUG Visual Studio debug macro
+# TING_ASSERTS_ENABLED enable asserts
+set(CMAKE_CXX_PREPROCESSOR_DEFINES_DEBUG "/D_DEBUG /DTING_ASSERTS_ENABLED")
+
 # C++ Debug Compile Flags
 # -----------------------------------------------------------------------------
 # /MDd selects the runtime library (http://msdn.microsoft.com/en-us/library/2kzt1wy3.aspx)
@@ -14,7 +20,9 @@ set(CMAKE_CXX_FLAGS "/DWIN32 /D_WINDOWS /W4 /WX /EHsc /GR /analyze")
 # /Ob0 inline function expansion: disabled
 # /Od optimizations disabled
 # /RTC1 runtime checks
-set(CMAKE_CXX_FLAGS_DEBUG "/D_DEBUG /MDd /ZI /Ob0 /Od /RTC1")
+set(CMAKE_CXX_COMPILER_FLAGS_DEBUG "/MDd /ZI /Ob0 /Od /RTC1")
+
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_PREPROCESSOR_DEFINES_DEBUG} ${CMAKE_CXX_COMPILER_FLAGS_DEBUG}")
 
 #CMAKE_CXX_FLAGS_MINSIZEREL:STRING=/MD /O1 /Ob1 /D NDEBUG
 #CMAKE_CXX_FLAGS_RELEASE:STRING=/MD /O2 /Ob2 /D NDEBUG

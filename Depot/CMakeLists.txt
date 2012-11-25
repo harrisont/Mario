@@ -2,7 +2,12 @@ cmake_minimum_required(VERSION 2.8)
 
 project(Mario)
 
-SET(CMAKE_BUILD_TYPE Debug)
+# -----------------------------------------------------------------------------
+# Configurations
+
+set(CMAKE_BUILD_TYPE Debug)
+
+# -----------------------------------------------------------------------------
 
 # CMAKE_SOURCE_DIR should be at /[root]/depot/source/.
 get_filename_component(repositoryDir ${CMAKE_SOURCE_DIR}/.. ABSOLUTE)

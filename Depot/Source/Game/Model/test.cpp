@@ -1,10 +1,9 @@
 #include "test.h"
 #include <SFML/Graphics.hpp>
+#include <Core/Assert/Assert.h>
 
 int main(int /*argc*/, char* /*argv*/[])
 {
-	std::cout << "Hello!" << std::endl;
-
 	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
