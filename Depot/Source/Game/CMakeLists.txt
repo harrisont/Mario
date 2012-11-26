@@ -8,6 +8,15 @@ set(EXECUTABLE_OUTPUT_PATH ${targetDir}/${PROJECT_NAME})
 AddGlobbedFiles(game Model)
 AddGlobbedFiles(game Model/Network)
 
+# ---- Include Directories ----------------------------------------------------
+
+include("${boostDir}/Version.cmake")
+
+include_directories(
+	${boostVersionDir})
+
+# -----------------------------------------------------------------------------
+
 set(executableName "Game")
 add_executable(${executableName} ${gameFiles})
 

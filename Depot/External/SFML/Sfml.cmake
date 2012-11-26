@@ -1,9 +1,9 @@
 # Folder variables
-set(sfmlVersionDir ${sfmlDir}/v2.0-rc)
+include("${sfmlDir}/Version.cmake")
 set(sfmlIncludeDir ${sfmlVersionDir}/include)
 
 # Build folder variables
-set(sfmlBuildDir ${buildDir}/External/SFML/v2.0-rc)
+set(sfmlBuildDir ${buildDir}/External/SFML/v${sfmlVersion})
 set(sfmlLibDir ${sfmlBuildDir}/lib)
 set(sfmlBinDir ${sfmlBuildDir}/lib)
 
