@@ -61,8 +61,6 @@ namespace Ting { namespace Core { namespace Assert
 } } } // namespace Ting::Core::Assert
 
 #ifdef TING_ASSERTS_ENABLED
-
-
 	#define TING_HANDLE_FAIL_BEHAVIOR(failBehavior) \
 		TING_MACRO_BEGIN \
 			if (failBehavior == Ting::Core::Assert::FailBehavior::Abort) \
