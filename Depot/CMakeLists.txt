@@ -20,13 +20,12 @@ set(externalDir ${depotDir}/External)
 set(cmakeScriptsDir ${depotDir}/CMakeScripts)
 set(sourceDir ${depotDir}/Source)
 
-set(boostDir ${externalDir}/Boost/v1.52.0)
-
 set(CMAKE_INSTALL_PREFIX ${targetDir})
 
+include("${externalDir}/ExternalDirs.cmake")
+
 include_directories(
-	${sourceDir}
-	${boostDir})
+	${sourceDir})
 
 # Use solution folders.
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
