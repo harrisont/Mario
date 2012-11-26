@@ -37,8 +37,9 @@ namespace Ting { namespace Core { namespace Assert
 {
 	enum class FailBehavior
 	{
-		Halt,
+		Abort,
 		Continue,
+		Break,
 	};
 
 	typedef FailBehavior (*Handler)(
@@ -59,15 +60,23 @@ namespace Ting { namespace Core { namespace Assert
 		_In_opt_ const char* message, ...);
 } } } // namespace Ting::Core::Assert
 
-#define TING_HALT() TING_DEBUG_BREAK()
-
 #ifdef TING_ASSERTS_ENABLED
+
+
+	#define TING_HANDLE_FAIL_BEHAVIOR(failBehavior) \
+		TING_MACRO_BEGIN \
+			if (failBehavior == Ting::Core::Assert::FailBehavior::Abort) \
+				::exit(EXIT_FAILURE); \
+			else if (failBehavior == Ting::Core::Assert::FailBehavior::Break) \
+				TING_DEBUG_BREAK(); \
+		TING_MACRO_END
+
 	#define TING_ASSERT(cond) \
 		TING_MACRO_BEGIN \
 			if (!(cond)) \
 			{ \
-				if (Ting::Core::Assert::ReportFailure(#cond, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION, nullptr) == Ting::Core::Assert::FailBehavior::Halt) \
-					TING_HALT(); \
+				auto failBehavior = Ting::Core::Assert::ReportFailure(#cond, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION, nullptr); \
+				TING_HANDLE_FAIL_BEHAVIOR(failBehavior); \
 			} \
 		TING_MACRO_END
 
@@ -75,15 +84,15 @@ namespace Ting { namespace Core { namespace Assert
 		TING_MACRO_BEGIN \
 			if (!(cond)) \
 			{ \
-				if (Ting::Core::Assert::ReportFailure(#cond, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION, (messageWithFormatSpecifiers), __VA_ARGS__) == Ting::Core::Assert::FailBehavior::Halt) \
-					TING_HALT(); \
+				auto failBehavior = Ting::Core::Assert::ReportFailure(#cond, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION, (messageWithFormatSpecifiers), __VA_ARGS__); \
+				TING_HANDLE_FAIL_BEHAVIOR(failBehavior); \
 			} \
 		TING_MACRO_END
 
 	#define TING_ASSERT_FAIL(messageWithFormatSpecifiers, ...) \
 		TING_MACRO_BEGIN \
-			if (Ting::Core::Assert::ReportFailure(nullptr, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION, (messageWithFormatSpecifiers), __VA_ARGS__) == Ting::Core::Assert::FailBehavior::Halt) \
-				TING_HALT(); \
+			auto failBehavior = Ting::Core::Assert::ReportFailure(nullptr, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION, (messageWithFormatSpecifiers), __VA_ARGS__); \
+			TING_HANDLE_FAIL_BEHAVIOR(failBehavior); \
 		TING_MACRO_END
 
 	#define TING_VERIFY(cond) TING_ASSERT(cond)

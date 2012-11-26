@@ -34,10 +34,12 @@ FailBehavior MessageBoxHandler(
 		title.str().c_str(),
 		MB_ABORTRETRYIGNORE | MB_ICONERROR /*uType*/);
 
-	if (messageBoxCloseResult == IDIGNORE)
+	if (messageBoxCloseResult == IDRETRY)
+		return FailBehavior::Break;
+	else if (messageBoxCloseResult == IDIGNORE)
 		return FailBehavior::Continue;
 	else
-		return FailBehavior::Halt;
+		return FailBehavior::Abort;
 }
 
 } } } // namespace Ting::Core::Assert

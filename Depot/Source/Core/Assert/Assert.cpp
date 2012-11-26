@@ -2,6 +2,7 @@
 
 #include <cstdio>
 #include <cstdarg>
+#include <stdlib.h>
 
 namespace Ting { namespace Core { namespace Assert
 {
@@ -25,7 +26,7 @@ namespace
 
 		std::printf("\n");
 
-		return FailBehavior::Halt;
+		return FailBehavior::Abort;
 	}
 
 	Handler& GetAssertHandlerInstance()
@@ -52,7 +53,7 @@ FailBehavior ReportFailure(
 	_In_opt_ const char* functionSignature,
 	_In_opt_ const char* messageWithFormatSpecifiers, ...)
 {
-	_In_opt_ const char* message = nullptr;
+	const char* message = nullptr;
 	if (messageWithFormatSpecifiers != nullptr)
 	{
 		char messageBuffer[1024];
