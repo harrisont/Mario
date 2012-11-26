@@ -1,10 +1,5 @@
 #pragma once
 
-#include <Boost/current_function.hpp>
-#include <Core/Macro/MacroCommon.h>
-
-#include <sal.h>
-
 /*
 Assertions
 ==========
@@ -32,6 +27,11 @@ Use
 to always trigger the assert-handler.
 This is the same as calling TING_ASSERT_MESSAGE(nullptr, messageWithFormatSpecifiers, ...).
 */
+
+#include <Boost/current_function.hpp>
+#include <Core/Macro/MacroCommon.h>
+
+#include <sal.h>
 
 namespace Ting { namespace Core { namespace Assert
 {
