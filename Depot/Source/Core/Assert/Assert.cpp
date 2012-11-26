@@ -9,12 +9,13 @@ namespace Ting { namespace Core { namespace Assert
 namespace
 {
 	FailBehavior DefaultHandler(
-		const char* condition,
-		const char* file,
-		const int line,
-		const char* message)
+		_In_opt_ const char* condition,
+		_In_ const char* file,
+		const unsigned int line,
+		_In_opt_ const char* functionSignature,
+		_In_opt_ const char* message)
 	{
-		std::printf("%s(%d): Assertion Failure: ", file, line);
+		std::printf("%s (%s:%u): Assertion Failure: ", functionSignature, file, line);
 
 		if (condition != nullptr)
 			std::printf("'%s' ", condition);
@@ -24,7 +25,7 @@ namespace
 
 		std::printf("\n");
 
-		return Halt;
+		return FailBehavior::Halt;
 	}
 
 	Handler& GetAssertHandlerInstance()
@@ -45,12 +46,13 @@ void SetHandler(Handler newHandler)
 }
 
 FailBehavior ReportFailure(
-	const char* condition,
-	const char* file,
-	const int line,
-	const char* messageWithFormatSpecifiers, ...)
+	_In_opt_ const char* condition,
+	_In_ const char* file,
+	const unsigned int line,
+	_In_opt_ const char* functionSignature,
+	_In_opt_ const char* messageWithFormatSpecifiers, ...)
 {
-	const char* message = nullptr;
+	_In_opt_ const char* message = nullptr;
 	if (messageWithFormatSpecifiers != nullptr)
 	{
 		char messageBuffer[1024];
@@ -64,7 +66,7 @@ FailBehavior ReportFailure(
 		message = messageBuffer;
 	}
 
-	return GetAssertHandlerInstance()(condition, file, line, message);
+	return GetAssertHandlerInstance()(condition, file, line, functionSignature, message);
 }
 
 } } } // namespace Ting::Core::Assert

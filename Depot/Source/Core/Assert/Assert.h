@@ -1,6 +1,9 @@
 #pragma once
 
+#include <Boost/current_function.hpp>
 #include <Core/Macro/MacroCommon.h>
+
+#include <sal.h>
 
 /*
 Assertions
@@ -32,26 +35,28 @@ This is the same as calling TING_ASSERT_MESSAGE(nullptr, messageWithFormatSpecif
 
 namespace Ting { namespace Core { namespace Assert
 {
-	enum FailBehavior
+	enum class FailBehavior
 	{
 		Halt,
 		Continue,
 	};
 
 	typedef FailBehavior (*Handler)(
-		const char* condition,
-		const char* file,
-		int line,
-		const char* message);
+		_In_opt_ const char* condition,
+		_In_ const char* file,
+		const unsigned int line,
+		_In_opt_ const char* functionSignature,
+		_In_opt_ const char* message);
 
 	Handler GetHandler();
 	void SetHandler(Handler newHandler);
 
 	FailBehavior ReportFailure(
-		const char* condition,
-		const char* file,
-		int line,
-		const char* message, ...);
+		_In_opt_ const char* condition,
+		_In_ const char* file,
+		const unsigned int line,
+		_In_opt_ const char* functionSignature,
+		_In_opt_ const char* message, ...);
 } } } // namespace Ting::Core::Assert
 
 #define TING_HALT() TING_DEBUG_BREAK()
@@ -61,7 +66,7 @@ namespace Ting { namespace Core { namespace Assert
 		TING_MACRO_BEGIN \
 			if (!(cond)) \
 			{ \
-				if (Ting::Core::Assert::ReportFailure(#cond, __FILE__, __LINE__, nullptr) == Ting::Core::Assert::Halt) \
+				if (Ting::Core::Assert::ReportFailure(#cond, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION, nullptr) == Ting::Core::Assert::FailBehavior::Halt) \
 					TING_HALT(); \
 			} \
 		TING_MACRO_END
@@ -70,14 +75,14 @@ namespace Ting { namespace Core { namespace Assert
 		TING_MACRO_BEGIN \
 			if (!(cond)) \
 			{ \
-				if (Ting::Core::Assert::ReportFailure(#cond, __FILE__, __LINE__, (messageWithFormatSpecifiers), __VA_ARGS__) == Ting::Core::Assert::Halt) \
+				if (Ting::Core::Assert::ReportFailure(#cond, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION, (messageWithFormatSpecifiers), __VA_ARGS__) == Ting::Core::Assert::FailBehavior::Halt) \
 					TING_HALT(); \
 			} \
 		TING_MACRO_END
 
 	#define TING_ASSERT_FAIL(messageWithFormatSpecifiers, ...) \
 		TING_MACRO_BEGIN \
-			if (Ting::Core::Assert::ReportFailure(nullptr, __FILE__, __LINE__, (messageWithFormatSpecifiers), __VA_ARGS__) == Ting::Core::Assert::Halt) \
+			if (Ting::Core::Assert::ReportFailure(nullptr, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION, (messageWithFormatSpecifiers), __VA_ARGS__) == Ting::Core::Assert::FailBehavior::Halt) \
 				TING_HALT(); \
 		TING_MACRO_END
 

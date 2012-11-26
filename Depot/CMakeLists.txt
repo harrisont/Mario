@@ -15,13 +15,18 @@ get_filename_component(repositoryDir ${CMAKE_SOURCE_DIR}/.. ABSOLUTE)
 set(buildDir ${repositoryDir}/Build)
 set(targetDir ${repositoryDir}/Target)
 set(depotDir ${repositoryDir}/Depot)
+
 set(externalDir ${depotDir}/External)
 set(cmakeScriptsDir ${depotDir}/CMakeScripts)
 set(sourceDir ${depotDir}/Source)
 
+set(boostDir ${externalDir}/Boost/v1.52.0)
+
 set(CMAKE_INSTALL_PREFIX ${targetDir})
 
-include_directories(${sourceDir})
+include_directories(
+	${sourceDir}
+	${boostDir})
 
 # Use solution folders.
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
