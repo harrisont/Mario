@@ -13,8 +13,6 @@ FailBehavior MessageBoxHandler(
 	_In_opt_ const char* functionSignature,
 	_In_opt_ const char* message)
 {
-	std::stringstream title("Assertion Failure");
-
 	std::stringstream text;
 
 	if (condition)
@@ -31,7 +29,7 @@ FailBehavior MessageBoxHandler(
 	int messageBoxCloseResult = ::MessageBox(
 		nullptr /*hWnd*/,
 		text.str().c_str(),
-		title.str().c_str(),
+		"Assertion Failure" /*lpCaption*/,
 		MB_ABORTRETRYIGNORE | MB_ICONERROR /*uType*/);
 
 	if (messageBoxCloseResult == IDRETRY)
