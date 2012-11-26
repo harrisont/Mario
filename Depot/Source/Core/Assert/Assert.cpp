@@ -1,7 +1,7 @@
 #include "Assert.h"
 
-#include <cstdio>
 #include <cstdarg>
+#include <cstdio>
 #include <stdlib.h>
 
 namespace Ting { namespace Core { namespace Assert
@@ -56,11 +56,11 @@ FailBehavior ReportFailure(
 	const char* message = nullptr;
 	if (messageWithFormatSpecifiers != nullptr)
 	{
-		char messageBuffer[1024];
+		char messageBuffer[4096];
 		{
 			va_list args;
 			va_start(args, messageWithFormatSpecifiers);
-			vsnprintf_s(messageBuffer, 1024, messageWithFormatSpecifiers, args);
+			vsnprintf_s(messageBuffer, sizeof(messageBuffer), messageWithFormatSpecifiers, args);
 			va_end(args);
 		}
 

@@ -2,12 +2,15 @@
 #include <SFML/Graphics.hpp>
 #include <Core/Assert/Assert.h>
 #include <Core/Assert/AssertHandlers.h>
+#include <Core/Log/Log.h>
 
 class Foo
 {
 public:
-	static void Bar(int x){
-	TING_ASSERT_MESSAGE(x > 0, "x <%d> must be positive", x);
+	static void Bar(int x)
+	{
+		TING_LOG("some message; x=%d", x);
+		TING_ASSERT_MESSAGE(x > 0, "x <%d> must be positive", x);
 	}
 };
 

@@ -57,7 +57,7 @@ namespace Ting { namespace Core { namespace Assert
 		_In_ const char* file,
 		const unsigned int line,
 		_In_opt_ const char* functionSignature,
-		_In_opt_ const char* message, ...);
+		_In_opt_ const char* messageWithFormatSpecifiers, ...);
 } } } // namespace Ting::Core::Assert
 
 #ifdef TING_ASSERTS_ENABLED
