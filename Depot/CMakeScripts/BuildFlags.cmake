@@ -1,11 +1,16 @@
 # C++ Compile Flags (All Configurations)
 # -----------------------------------------------------------------------------
+# /D_VARIADIC_MAX
+#   Visual Studio does not yet have support for variadic templates.
+#   It enables them by having support for 5 to 10 parameters, defaulting to 5.
+#   This option makes it use the maximum number of parameters (10).
+#   It is enbabled to support Google Test, which uses variadic templates.
 # /Wall enable all warnings
 # /WX treat warnings as errors
 # /EHsc exception handling model (http://msdn.microsoft.com/en-us/library/1deeycx5.aspx)
 # /GR enable run-time type information
 # /analyze enable static code analysis
-set(CMAKE_CXX_FLAGS "/DWIN32 /D_WINDOWS /W4 /WX /EHsc /GR /analyze")
+set(CMAKE_CXX_FLAGS "/DWIN32 /D_WINDOWS /D_VARIADIC_MAX=10 /W4 /WX /EHsc /GR /analyze")
 
 # C++ Debug Preprocessor Defines Flags
 # -----------------------------------------------------------------------------

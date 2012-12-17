@@ -17,7 +17,6 @@ set(googleTestProjects
 	gtest
 	gtest_main)
 
-# SFML solution folder
 foreach(project ${googleTestProjects})
 	set_target_properties(${project} PROPERTIES FOLDER "Google Test")
 endforeach()
