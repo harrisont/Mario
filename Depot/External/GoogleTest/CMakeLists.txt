@@ -10,3 +10,14 @@ include(Version.cmake)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_VARIADIC_MAX=10")
 
 add_subdirectory(${googleTestVersionDir})
+
+# ---- Project Folder --------------------------------------------------------
+
+set(googleTestProjects
+	gtest
+	gtest_main)
+
+# SFML solution folder
+foreach(project ${googleTestProjects})
+	set_target_properties(${project} PROPERTIES FOLDER "Google Test")
+endforeach()
