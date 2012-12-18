@@ -12,6 +12,10 @@ function(AddTestProject target)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd6326" PARENT_SCOPE)
 
 	file(GLOB_RECURSE testFiles *.test.cpp)
+	if(NOT testFiles)
+		message(WARNING "AddTestProject called for target \"${target}\" cannot find any tests so no test project will be created.")
+		return()
+	endif()
 
 	add_executable(${testTarget} ${testFiles})
 
@@ -26,6 +30,8 @@ function(AddTestProject target)
 	CopyGoogleTestLibraries(${testTarget} ${googleTestLibraries})
 endfunction()
 
+# Usage:
+#   CopyGoogleTestLibraries(MyTarget gtest gtest_main)
 function(CopyGoogleTestLibraries target)
 	set(googleTestBuildDir ${buildDir}/External/GoogleTest/v${googleTestVersion})
 
