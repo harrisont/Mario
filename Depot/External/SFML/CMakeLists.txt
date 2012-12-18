@@ -1,1 +1,3 @@
-add_subdirectory(v2.0-rc)
+include(Version.cmake)
+
+add_subdirectory(${sfmlVersionDir})

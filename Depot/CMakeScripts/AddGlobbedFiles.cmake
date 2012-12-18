@@ -17,7 +17,14 @@ function(AddGlobbedFiles outGlobbedFilesPrefixVar directory)
 	#message("AddGlobbedFiles: outGlobbedFilesPrefixVar=${outGlobbedFilesPrefixVar}, directory=${directory}")
 
 	file(GLOB headerFiles ${directory}/*.h ${directory}/*.hpp)
-	file(GLOB sourceFiles ${directory}/*.cpp ${directory}/*.c)
+	file(GLOB sourceFiles ${directory}/*.cpp ${directory}/*.c  ${directory}/*.cc)
+
+	# Ignore test sources.
+	file(GLOB testFiles ${directory}/*.test.cpp ${directory}/*.test.c)
+	if(testFiles)
+		list(REMOVE_ITEM sourceFiles ${testFiles})
+	endif()
+
 	set(allFiles ${headerFiles} ${sourceFiles})
 
 	set(headersVar ${outGlobbedFilesPrefixVar}Headers)
