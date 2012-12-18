@@ -19,7 +19,7 @@ include_directories(
 
 # ---- Executable -------------------------------------------------------------
 
-set(executableName "Game")
+set(executableName ${PROJECT_NAME})
 add_executable(${executableName} ${gameFiles})
 
 # ---- Dependencies -----------------------------------------------------------
