@@ -1,5 +1,5 @@
 // Evaluates to the number of elements in the array.
-#define COUNT_OF(x) \
+#define TING_COUNT_OF(x) \
 	((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
 
 #define TING_DEBUG_BREAK() __debugbreak()

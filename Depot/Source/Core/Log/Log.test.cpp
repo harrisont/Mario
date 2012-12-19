@@ -48,7 +48,7 @@ TEST_F(LogTest, LogWorks)
 	std::string functionSignature = "function-signature";
 	std::string messageWithFormatSpecifiers = "x=%d, y=%u";
 	char messageBuffer[100] = "";
-	sprintf_s(messageBuffer, COUNT_OF(messageBuffer), messageWithFormatSpecifiers.c_str(), x, y);
+	sprintf_s(messageBuffer, TING_COUNT_OF(messageBuffer), messageWithFormatSpecifiers.c_str(), x, y);
 
 	Log(
 		file.c_str(),
