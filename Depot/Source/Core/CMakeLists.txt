@@ -4,8 +4,6 @@ include("${googleTestDir}/GoogleTest.cmake")
 
 project(Core)
 
-set(EXECUTABLE_OUTPUT_PATH ${targetDir}/${PROJECT_NAME})
-
 # ---- Sources ----------------------------------------------------------------
 
 AddGlobbedFiles(core Assert)
