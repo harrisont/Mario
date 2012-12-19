@@ -1,4 +1,10 @@
 // Evaluates to the number of elements in the array.
+//
+// Note that the array's size must be fixed at compile time.
+// Dynamically-allocated arrays are not allowed.
+//
+// Passing in a pointer instead of an array is incorrect, and will generate
+// warning 6384 ("Dividing sizeof a pointer by another value").
 #define TING_COUNT_OF(x) \
 	((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
 
