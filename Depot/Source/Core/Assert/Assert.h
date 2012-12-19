@@ -96,6 +96,9 @@ namespace Ting { namespace Core { namespace Assert
 	#define TING_VERIFY(cond) TING_ASSERT(cond)
 	#define TING_VERIFY_MESSAGE(cond, messageWithFormatSpecifiers, ...) TING_ASSERT_MESSAGE(cond, messageWithFormatSpecifiers, ##__VA_ARGS__)
 #else
+	// Mark the inputs as unused so that we don't get "unreferenced local variable" warnings
+	// for variables that are only used in asserts.
+
 	#define TING_ASSERT(condition) \
 		TING_MACRO_BEGIN \
 			TING_UNUSED(condition); \
