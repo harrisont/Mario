@@ -3,8 +3,7 @@ include("${googleTestDir}/Version.cmake")
 # Creates a Google Test project to run the tests for target.
 # Searches for test sources (*.test.cpp) from the current directory recursively
 function(AddTestProject target)
-	include_directories(
-		${googleTestVersionDir}/include)
+	include_directories(${googleTestVersionDir}/include)
 
 	set(testTarget "${target}Test")
 
@@ -28,6 +27,10 @@ function(AddTestProject target)
 		${googleTestLibraries})
 
 	CopyGoogleTestLibraries(${testTarget} ${googleTestLibraries})
+
+	# -----------------------------------------------------------------------------
+
+	RunTestAsPostBuildStep(${testTarget})
 endfunction()
 
 # Usage:
@@ -40,7 +43,14 @@ function(CopyGoogleTestLibraries target)
 
 		add_custom_command(TARGET ${target} POST_BUILD
 			COMMAND ${CMAKE_COMMAND} -E copy_if_different "${googleTestBuildDir}/$<CONFIGURATION>/${libFile}" "$<TARGET_FILE_DIR:${target}>"
-			COMMENT "Copying Google Test DLL: <${libFile}>"
+			COMMENT "Copying Google Test DLL '${libFile}'."
 			VERBATIM)
 	endforeach()
+endfunction()
+
+function(RunTestAsPostBuildStep target)
+	add_custom_command(TARGET ${target} POST_BUILD
+		COMMAND ${target}
+		COMMENT "Running tests in ${target}."
+		VERBATIM)
 endfunction()
