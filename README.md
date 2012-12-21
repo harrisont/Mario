@@ -17,3 +17,7 @@ Subsequent Builds
 * To run CMake to generate make/project files and do a build, run `/GenerateAndBuild.bat`.
 * To just run CMake, run `/Generate.bat`.
 * To clean, run `/Clean.bat`.
+
+Author
+------
+Harrison Ting
