@@ -10,8 +10,8 @@ class Generators:
 
 
 def is_visual_studio_14_installed():
-    return is_visual_studio_14_installed_helper(r"Software\Microsoft\DevDiv\vs\Servicing\11.0") \
-        or is_visual_studio_14_installed_helper(r"Software\Microsoft\DevDiv\vc\Servicing\11.0")
+    return is_visual_studio_14_installed_helper(r"Software\Microsoft\DevDiv\vs\Servicing\14.0") \
+        or is_visual_studio_14_installed_helper(r"Software\Microsoft\DevDiv\vc\Servicing\14.0")
 
 
 def is_visual_studio_14_installed_helper(vs14_key_path):
