@@ -1,3 +1,6 @@
 Build
 Target
 __pycache__
+
+# PyCharm
+.idea/
