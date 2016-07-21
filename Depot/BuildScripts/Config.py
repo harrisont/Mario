@@ -2,4 +2,4 @@ import CMake
 
 SOLUTION_NAME = "Mario"
 
-CMAKE_GENERATOR = CMake.Generators.VISUAL_STUDIO_11
+CMAKE_GENERATOR = CMake.Generators.VISUAL_STUDIO_14

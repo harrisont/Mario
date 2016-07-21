@@ -4,15 +4,15 @@ import subprocess
 import winreg
 
 class Generators:
-	VISUAL_STUDIO_11 = "Visual Studio 11"
+	VISUAL_STUDIO_14 = "Visual Studio 14"
 	NMAKE_MAKEFILES = "NMake Makefiles"
 
-def is_visual_studio_11_installed():
-	return is_visual_studio_11_installed_helper(r"Software\Microsoft\DevDiv\vs\Servicing\11.0") \
-		or is_visual_studio_11_installed_helper(r"Software\Microsoft\DevDiv\vc\Servicing\11.0")
+def is_visual_studio_14_installed():
+	return is_visual_studio_14_installed_helper(r"Software\Microsoft\DevDiv\vs\Servicing\11.0") \
+		or is_visual_studio_14_installed_helper(r"Software\Microsoft\DevDiv\vc\Servicing\11.0")
 
 # We expect there to be at least 1 value under vs11_key_path.
-def is_visual_studio_11_installed_helper(vs11_key_path):
+def is_visual_studio_14_installed_helper(vs11_key_path):
 	root_key = winreg.HKEY_LOCAL_MACHINE
 	try:
 		vs11_key = winreg.OpenKey(root_key, vs11_key_path)
@@ -27,14 +27,14 @@ class GeneratorValidity:
 	MISSING = "missing"
 
 def get_cmake_generator_validity(generator):
-	if generator == Generators.VISUAL_STUDIO_11:
-		if is_visual_studio_11_installed():
+	if generator == Generators.VISUAL_STUDIO_14:
+		if is_visual_studio_14_installed():
 			return GeneratorValidity.VALID
 		else:
 			return GeneratorValidity.MISSING
 	elif generator == Generators.NMAKE_MAKEFILES:
 		# TODO(HTing): actually check for NMake instead of just checking for VS11.
-		if is_visual_studio_11_installed():
+		if is_visual_studio_14_installed():
 			return GeneratorValidity.VALID
 		else:
 			return GeneratorValidity.MISSING
@@ -43,6 +43,6 @@ def get_cmake_generator_validity(generator):
 
 def run_cmake(args):
 	""" args: a list of arguments to pass to CMake.
-	e.g. run_cmake(["-G", "Visual Studio 11"])
+	e.g. run_cmake(["-G", "Visual Studio 14"])
 	"""
 	return subprocess.call([Commands.CMAKE_CMD] + args)
