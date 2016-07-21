@@ -1,2 +1,2 @@
-set(sfmlVersion 2.0-rc)
+set(sfmlVersion 2.3.2)
 set(sfmlVersionDir ${sfmlDir}/v${sfmlVersion})
