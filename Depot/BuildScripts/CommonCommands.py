@@ -1,3 +1,3 @@
 import CommonDirectories as Directories
 
-CMAKE_CMD = Directories.EXTERNAL_DIR + "/CMake/v2.8.8/bin/cmake.exe"
+CMAKE_CMD = Directories.EXTERNAL_DIR + "/CMake/v3.6.0/bin/cmake.exe"
