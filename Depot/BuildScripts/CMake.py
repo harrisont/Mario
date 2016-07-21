@@ -5,7 +5,7 @@ import winreg
 
 
 class Generators:
-    VISUAL_STUDIO_14 = "Visual Studio 14"
+    VISUAL_STUDIO_14 = "Visual Studio 14 2015"
     NMAKE_MAKEFILES = "NMake Makefiles"
 
 
