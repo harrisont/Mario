@@ -35,7 +35,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_PREPROCESSOR_DEFINES_DEBUG} ${CMAKE_CXX_C
 
 # Linker Flags
 # -----------------------------------------------------------------------------
-# /WX tret warnings as errors
+# /WX treat warnings as errors
 set(CMAKE_EXE_LINKER_FLAGS "/WX")
 
 # Executable Debug Linker Flags
