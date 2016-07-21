@@ -121,7 +121,7 @@ class linked_ptr_internal {
   bool depart() {
     MutexLock lock(&g_linked_ptr_mutex);
 
-    if (next_ == this) return true;
+    if (next_ == this || next_ == nullptr) return true;
     linked_ptr_internal const* p = next_;
     while (p->next_ != this) p = p->next_;
     p->next_ = next_;
