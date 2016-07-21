@@ -10,7 +10,7 @@ Run `/SetupWorkspace.bat` which:
 * runs CMake to generate make/project files
 * builds.
 
-> Visual Studio 11 is the default CMake generator.  You can change this in `/Depot/BuildScripts/Config.bat`.
+> Visual Studio 14 is the default CMake generator.  You can change this in `/Depot/BuildScripts/Config.bat`.
 
 Subsequent Builds
 -----------------
