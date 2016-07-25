@@ -18,6 +18,7 @@ set(depotDir ${repositoryDir}/Depot)
 
 set(externalDir ${depotDir}/External)
 set(cmakeScriptsDir ${depotDir}/CMakeScripts)
+set(dataDir ${depotDir}/Data)
 set(sourceDir ${depotDir}/Source)
 
 set(CMAKE_INSTALL_PREFIX ${targetDir})
@@ -31,5 +32,6 @@ include_directories(
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 add_subdirectory(CMakeScripts)
+add_subdirectory(Data)
 add_subdirectory(External)
 add_subdirectory(Source)

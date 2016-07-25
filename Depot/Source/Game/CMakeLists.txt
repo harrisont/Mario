@@ -1,5 +1,6 @@
 include("${cmakeScriptsDir}/AddGlobbedFiles.cmake")
 include("${sfmlDir}/Sfml.cmake")
+include("${dataDir}/Data.cmake")
 
 project(Game)
 
@@ -31,3 +32,11 @@ targetLinkSfmlLibs(${executableName}
 	system
 	window
 	graphics)
+
+# Copy data
+foreach(dataFile ${dataFiles})
+	add_custom_command(TARGET ${executableName} POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${dataDir}/${dataFile}" "$<TARGET_FILE_DIR:${executableName}>"
+		COMMENT "Copying data file '${dataFile}'."
+		VERBATIM)
+endforeach()
