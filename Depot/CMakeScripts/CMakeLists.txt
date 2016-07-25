@@ -1,5 +1,3 @@
-include("${cmakeScriptsDir}/AddGlobbedFiles.cmake")
-
 add_custom_target(CMakeScripts SOURCES
 	CMakeLists.txt
 	AddGlobbedFiles.cmake
