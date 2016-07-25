@@ -30,5 +30,6 @@ include_directories(
 # Use solution folders.
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+add_subdirectory(CMakeScripts)
 add_subdirectory(External)
 add_subdirectory(Source)

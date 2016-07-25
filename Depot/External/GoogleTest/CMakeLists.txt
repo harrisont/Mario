@@ -18,5 +18,11 @@ set(googleTestProjects
 	gtest_main)
 
 foreach(project ${googleTestProjects})
-	set_target_properties(${project} PROPERTIES FOLDER "Google Test")
+	set_target_properties(${project} PROPERTIES FOLDER "External/Google Test")
 endforeach()
+
+add_custom_target(gtest-CMakeScripts SOURCES
+	CMakeLists.txt
+	GoogleTest.cmake
+	Version.cmake)
+set_target_properties(gtest-CMakeScripts PROPERTIES FOLDER "External/Google Test")

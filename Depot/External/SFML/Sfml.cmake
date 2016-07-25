@@ -18,7 +18,7 @@ set(sfmlProjects
 
 # SFML solution folder
 foreach(sfmlProject ${sfmlProjects})
-	set_target_properties(sfml-${sfmlProject} PROPERTIES FOLDER "SFML")
+	set_target_properties(sfml-${sfmlProject} PROPERTIES FOLDER "External/SFML")
 endforeach()
 
 # Include directories
