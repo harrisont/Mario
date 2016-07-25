@@ -18,6 +18,10 @@ Subsequent Builds
 * To just run CMake, run `/Generate.bat`.
 * To clean, run `/Clean.bat`.
 
+Running
+--------------------
+* When running from Visual Studio, set "Working Directory" to ```$(OutputPath)```
+
 Author
 ------
 Harrison Ting
