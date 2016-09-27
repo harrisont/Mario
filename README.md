@@ -2,6 +2,8 @@ Mario
 =====
 A Mario game clone
 
+![Screenshot](Screenshot.png)
+
 Setup
 -----
 Run `/SetupWorkspace.bat` which:
@@ -20,8 +22,6 @@ Subsequent Builds
 
 Running
 --------------------
-* When running from Visual Studio, set "Working Directory" to ```$(OutputPath)```
-
-Author
-------
-Harrison Ting
+1. Change the working directory to the location of the executable, `Target\Game\{config}`. In Visual Studio, do this by setting the project properties `Debugging > Working Directory` to `$(OutputPath)`.
+Run GettingStarted.exe.
+2. Run `Game.exe`.
